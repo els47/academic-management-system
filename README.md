@@ -46,6 +46,6 @@ Paradigma de Programação Orientada a Objetos (POO)
 
 Manipulação de dados e relatórios em console (ou arquivos .txt / .csv)
 
-# # 🚀 Objetivo do Projeto
+# 🚀 Objetivo do Projeto
 
 Este projeto foi desenvolvido como exercício de lógica de programação e organização de sistemas acadêmicos utilizando Python, simulando o funcionamento básico de um sistema de gestão educacional.
