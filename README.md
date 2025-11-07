@@ -1,11 +1,11 @@
 # Sistema de Gestão Acadêmica | Python
 
-# # 📘 Descrição
+# 📘 Descrição
 
 Sistema acadêmico desenvolvido em Python com o objetivo de gerenciar informações de cursos, disciplinas, professores, alunos e notas.
 O sistema também realiza o cálculo automático de médias, emite relatórios e gera certificados de conclusão conforme os critérios definidos.
 
-# # 📋 Requisitos
+# 📋 Requisitos
 **Cadastro**
 
 * Cursos: código, nome
@@ -38,7 +38,7 @@ Para concluir um curso, o aluno deve ter sido aprovado em pelo menos dez discipl
 
 Emitir certificado de conclusão de curso, contendo o nome do aluno, o curso e a data de emissão.
 
-# # 🛠️ Tecnologias Utilizadas
+# 🛠️ Tecnologias Utilizadas
 
 Python 3.x
 
