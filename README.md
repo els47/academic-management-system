@@ -20,23 +20,23 @@ O sistema também realiza o cálculo automático de médias, emite relatórios e
 
 **Regras de Negócio**
 
-O aluno é aprovado se a média de todas as notas for maior ou igual a 7.
+* O aluno é aprovado se a média de todas as notas for maior ou igual a 7.
 
-Caso a média seja menor que 7 e maior ou igual a 4, o sistema deverá exibir em quais disciplinas o aluno não obteve nota suficiente e oferecer a opção de alterar a nota nessas disciplinas.
+* Caso a média seja menor que 7 e maior ou igual a 4, o sistema deverá exibir em quais disciplinas o aluno não obteve nota suficiente e oferecer a opção de alterar a nota nessas disciplinas.
 
-Caso a média seja menor que 4, o sistema deverá informar que o aluno foi reprovado no curso.
+* Caso a média seja menor que 4, o sistema deverá informar que o aluno foi reprovado no curso.
 
 **Relatórios e Funcionalidades**
 
-Gerar relatório mostrando todos os alunos matriculados, professores, cursos e disciplinas cadastrados.
+* Gerar relatório mostrando todos os alunos matriculados, professores, cursos e disciplinas cadastrados.
 
-Emitir relatórios com todos os alunos matriculados em cada curso e disciplina.
+* Emitir relatórios com todos os alunos matriculados em cada curso e disciplina.
 
-Gerar relatório exibindo o nome do aluno, seus cursos, e todas as notas de todas as disciplinas cursadas por curso.
+* Gerar relatório exibindo o nome do aluno, seus cursos, e todas as notas de todas as disciplinas cursadas por curso.
 
-Para concluir um curso, o aluno deve ter sido aprovado em pelo menos dez disciplinas.
+* Para concluir um curso, o aluno deve ter sido aprovado em pelo menos dez disciplinas.
 
-Emitir certificado de conclusão de curso, contendo o nome do aluno, o curso e a data de emissão.
+* Emitir certificado de conclusão de curso, contendo o nome do aluno, o curso e a data de emissão.
 
 # 🛠️ Tecnologias Utilizadas
 
