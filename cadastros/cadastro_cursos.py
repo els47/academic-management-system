@@ -1,23 +1,27 @@
-from dados import armazenamento
-cursos = []
 
-def cadastrar_cursos():
+def cadastrar_cursos(cursos):
     while(True):
 
         # Recebendo valores do usuário
+        # TODO: validar se código já existe
         codigo = int(input("Codigo: "))
         nome = str(input("Nome: ")).upper()
 
-        cursos.append({"Codigo": codigo, "Nome": nome}) # Adicionando dicionário à lista
+        existeCodigo = any(c["Codigo"] == codigo for c in cursos)
+        existeNome = any(c["Nome"] == nome for c in cursos)
 
-        print("Curso cadastrado!")
+        
 
-        # Confirmação de continuidade ou não
-        r = ' '
-        while r not in 'SN':
-            r = str(input('Deseja continuar? [S/N]: ')).strip().upper()[0]
-        if r == 'N':
+        if existeCodigo or existeNome:
+            print("Curso já cadastrado. Tente novamente!")
+        else:
+            cursos.append({"Codigo": codigo, "Nome": nome}) # Adicionando dicionário à lista
+            print("Curso cadastrado!")
+            
+        # Confirmação de continuidade ou não  
+        if not deseja_continuar():
             break
+        
     # Iteração dos pares chave:valor e exibição para o usuário
     print('-'*50)
     print('               CURSOS CADASTRADOS               ')
@@ -26,4 +30,11 @@ def cadastrar_cursos():
         print(f"Codigo: {curso['Codigo']} | Nome: {curso['Nome']}") # Acessar os pares chave-valor dos dicionários
     print(''' ''')
 
-cadastrar_cursos() 
+def deseja_continuar():
+    while True:
+        r = input("Deseja continuar? [S/N]: ").strip().upper()
+        if r in ['S', 'N']:
+            return r == 'S'   # True continua, False para
+
+
+

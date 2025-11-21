@@ -15,7 +15,8 @@ def menu_cadastros():
         print(''' ''')
         opc = int(input('Digite a sua opção: '))
         if opc == 1:
-            cadastrar_cursos()
+            cursos = []
+            cadastrar_cursos(cursos)
             break
         elif opc == 2:
             print("Cadastrar disciplina - Em desenvolvimento")
