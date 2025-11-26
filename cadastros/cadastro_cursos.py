@@ -5,8 +5,8 @@ def cadastrar_cursos(cursos): # Cadastro dos cursos utilizando a classe Curso
     while(True):
 
         # Recebendo valores do usuário
-        codigo = int(input("Codigo: "))
-        nome = str(input("Nome: ")).upper()
+        codigo = int(input("Código: "))
+        nome = str(input("Nome: ")).strip().upper()
 
         # Validando se os dados já existem. Objetos são acessados com ponto, diferente de dicionários
         existeCodigo = any(c.codigo == codigo for c in cursos) 
@@ -30,18 +30,18 @@ def cadastrar_cursos(cursos): # Cadastro dos cursos utilizando a classe Curso
     print('-'*50)
     print('CURSOS CADASTRADOS'.center(50))
     print('-'*50)
+    print(''' ''')
 
     if cursos:
         for indice, curso in enumerate(cursos, 1): # Acessa atributos do objeto
-            print(f"{indice}. Codigo: {curso.codigo} | Nome: {curso.nome}") # Acessar os pares chave-valor dos dicionários
+            print(f"{indice}. Código: {curso.codigo} | Nome: {curso.nome}") # Acessar os atributos do objeto
+        print(''' ''')
     else:
         print('Nenhum curso cadastrado!')
 
-print(''' ''')
-
 def deseja_continuar():
     while True:
-        r = input("Deseja cadastrar outro curso? [S/N]: ").strip().upper()
+        r = input("Deseja cadastrar outro curso? [S/N]: ").strip().upper()[0]
         if r in ['S', 'N']:
-            return r == 'S'   # True continua, False para
+            return r == 'S'   # True continua, False para. Está dentro da função de cadastro.
 

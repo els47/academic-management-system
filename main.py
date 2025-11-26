@@ -27,13 +27,16 @@ def main():
         print(''' ''')
         
         if opc == 1:
-            menu_cadastros(dados_sistema)  # Passa os dados
-            
-        elif opc == 2:
-            print(f"Cursos cadastrados: {len(dados_sistema['cursos'])}") # Exibe os dados armazenados
-            
+            menu_cadastros(dados_sistema)  # Passa os dados 
+        #elif opc == 2:
+         #   menu_relatorios(dados_sistema)
+         #elif opc == 3:
+         #  menu_certificados() # Qual será o parâmetro global?
         elif opc == 4:
             break
+        else:
+            print("Opção inválida! Tente novamente.")
 
+#TODO: PESQUISAR A FUNÇÃO DESSE BLOCO DE CÓDIGO
 if __name__ == "__main__":
     main()
