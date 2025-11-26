@@ -1,47 +1,33 @@
-# Chamando a classe Curso
 from modelos.curso import Curso
 
-def cadastrar_cursos(cursos): # Cadastro dos cursos utilizando a classe Curso
-    while(True):
-
-        # Recebendo valores do usuário
-        codigo = int(input("Código: "))
-        nome = str(input("Nome: ")).strip().upper()
-
-        # Validando se os dados já existem. Objetos são acessados com ponto, diferente de dicionários
-        existeCodigo = any(c.codigo == codigo for c in cursos) 
-        existeNome = any(c.nome == nome for c in cursos)
-
-        if existeCodigo or existeNome:
-            print("Curso já cadastrado. Tente novamente!")
-        else:
-            # Cria um objeto da classe Curso
-            novo_curso = Curso(codigo, nome)
-
-            # Adiciona o objeto à lista
-            cursos.append(novo_curso) 
-            print(f"Curso cadastrado!")
-            
-        # Confirmação de continuidade ou não  
-        if not deseja_continuar():
-            break
+def cadastrar_curso(cursos):
+    while True:
+        print("\n--- CADASTRO DE CURSO ---")
         
-    # Iteração dos pares chave:valor e exibição para o usuário
-    print('-'*50)
-    print('CURSOS CADASTRADOS'.center(50))
-    print('-'*50)
-    print(''' ''')
+        # Tirei o 'int' para aceitar letras (ex: 'CC', 'SI')
+        codigo = input("Código (ex: CC): ").strip().upper()
+        
+        # Verifica logo se o código já existe
+        existe_codigo = any(c.codigo == codigo for c in cursos)
+        
+        if existe_codigo:
+            print(f"Erro: Já existe um curso com o código '{codigo}'. Tente outro.")
+            continue # Volta para o começo sem pedir o nome
+
+        # Só pede o nome se o código for livre
+        nome = input("Nome do Curso: ").strip().upper()
+        
+        novo_curso = Curso(codigo, nome)
+        cursos.append(novo_curso)
+        print(f"Sucesso: Curso '{nome}' cadastrado!")
+
+        # Simplifiquei a pergunta
+        if input("\nCadastrar outro curso? [S/N]: ").strip().upper() != 'S':
+            break
 
     if cursos:
-        for indice, curso in enumerate(cursos, 1): # Acessa atributos do objeto
-            print(f"{indice}. Código: {curso.codigo} | Nome: {curso.nome}") # Acessar os atributos do objeto
-        print(''' ''')
-    else:
-        print('Nenhum curso cadastrado!')
-
-def deseja_continuar():
-    while True:
-        r = input("Deseja cadastrar outro curso? [S/N]: ").strip().upper()[0]
-        if r in ['S', 'N']:
-            return r == 'S'   # True continua, False para. Está dentro da função de cadastro.
-
+        print('-'*40)
+        print('CURSOS ATUAIS')
+        for c in cursos:
+            print(f"[{c.codigo}] - {c.nome}")
+        print('-'*40)

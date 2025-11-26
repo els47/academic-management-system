@@ -1,5 +1,8 @@
-from cadastros.cadastro_cursos import cadastrar_cursos
+from cadastros.cadastro_cursos import cadastrar_curso
 from cadastros.cadastro_alunos import cadastrar_alunos
+from cadastros.cadastro_disciplinas import cadastrar_disciplina
+from cadastros.cadastro_professores import cadastrar_professor
+from modelos.aluno import Aluno
 
 def menu_cadastros(dados_sistema): # Utiliza como parâmetro os dados que estão armazenado globalmente
     while (True):
@@ -18,11 +21,14 @@ def menu_cadastros(dados_sistema): # Utiliza como parâmetro os dados que estão
         print(''' ''')
 
         if opc == 1:
-            cadastrar_cursos(dados_sistema['cursos'])
+            cadastrar_curso(dados_sistema['cursos'])
         elif opc == 2:
-            print("Cadastrar disciplina - Em desenvolvimento")
+            cadastrar_disciplina(dados_sistema['disciplinas'])
         elif opc == 3:
-            print("Cadastrar professor - Em desenvolvimento")
+            cadastrar_professor(
+                dados_sistema['professores'], 
+                dados_sistema['cursos'], 
+                dados_sistema['disciplinas'])
         elif opc == 4:
             cadastrar_alunos(dados_sistema['alunos'], dados_sistema['cursos'])
         elif opc == 5:

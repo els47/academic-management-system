@@ -1,3 +1,5 @@
+from modelos.aluno import Aluno
+
 def cadastrar_alunos(alunos, cursos):
     while True:
         print("\n--- NOVO CADASTRO DE ALUNO ---")
@@ -40,7 +42,8 @@ def cadastrar_alunos(alunos, cursos):
                 alunos.append(novo_aluno)
                 print("Aluno cadastrado com sucesso!")
 
-        if not deseja_continuar():
+        continuar = input("\nDeseja cadastrar outro aluno? [S/N]: ").strip().upper()
+        if continuar != 'S': # Se digitar qualquer coisa que não seja S, ele para
             break
 
     # Mostra a lista no final
@@ -51,3 +54,9 @@ def cadastrar_alunos(alunos, cursos):
         for i, aluno in enumerate(alunos):
             print(f"{i + 1}. Matrícula: {aluno.matricula} | Nome: {aluno.nome} | Curso: {aluno.curso}")
         print('-'*50)
+def deseja_continuar():
+    while True:
+        resp = input("Deseja cadastrar outro aluno? [S/N]: ").strip().upper()
+    if resp in ['S', 'N']:
+        return resp == 'S'
+        print("Opção inválida. Digite S ou N.")
