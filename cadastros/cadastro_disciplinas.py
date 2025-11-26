@@ -1,0 +1,1 @@
+# def cadastrar_disciplinas(disciplinas)
