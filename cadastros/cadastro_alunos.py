@@ -1,53 +1,53 @@
-# Chamando a classe Curso
-from modelos.aluno import Aluno
+def cadastrar_alunos(alunos, cursos):
+    while True:
+        print("\n--- NOVO CADASTRO DE ALUNO ---")
+        
+        # Tenta pegar um numero, se digitar letra avisa o erro
+        try:
+            matricula = int(input("Matrícula: "))
+        except ValueError:
+            print("A matrícula precisa ser um número.")
+            continue
 
-#TODO: PESQUISAR COMO A FUNÇÃO RECEBE ESSAS LISTAS SE NÃO TÊM IMPORT DO MAIN PARA ESSE ARQUIVO
-def cadastrar_alunos(alunos, cursos): # Utiliza como parâmetros os dados globais com a lista de alunos. Faz a conexão com a de cursos
-    while(True):
-
-        # Recebendo valores do usuário
-        matricula = int(input("Matrícula: "))
         nome = str(input("Nome Completo: ")).strip().upper()
-        curso = str(input("Curso: ")).strip().upper()
+        # Mudei o nome da variavel aqui para nao confundir com a lista
+        nome_curso = str(input("Nome do Curso: ")).strip().upper()
 
-        #TODO: O cadastro de um aluno só é realizado se houver o curso cadastrado nos dados globais. Depois, verifica-se se já existe matrícula no curso em específico, para evitar duplicidade
-        existeMatricula = any(c.matricula == matricula for c in alunos) # Acessa o atributo matricula ao percorrer cada aluno da lista
+        # Passo 1: Verifica se o curso existe mesmo
+        curso_existe = False
+        for c in cursos:
+            if c.nome == nome_curso:
+                curso_existe = True
+                break 
+        
+        if not curso_existe:
+            print(f"Erro: O curso '{nome_curso}' não foi encontrado. Cadastre o curso primeiro.")
+        
+        else:
+            # Passo 2: Se o curso existe, vê se o aluno já ta nele
+            ja_matriculado = False
+            for a in alunos:
+                # Confere se a matricula bate E se o curso é o mesmo
+                if a.matricula == matricula and a.curso == nome_curso:
+                    ja_matriculado = True
+                    break
 
-        for indice, curso in enumerate(cursos): # Acessa o índice e o valor de cada item da lista
-            if curso.nome in alunos['curso']: #TODO: COMO VERIFICAR SE O ALUNO ESTÁ NO CURSO CADASTRADO EM ESPECÍFICO? 
-                print("Volte ao menu de cadastro para realizar o cadastro do curso!")
+            if ja_matriculado:
+                print(f"Erro: O aluno {matricula} já está matriculado neste curso.")
             else:
-                if existeMatricula and curso.nome: #TODO: COMO VERIFICAR SE A MATRÍCULA JÁ ESTÁ CADASTRADO NESSE CURSO?
-                    print(f'Aluno já cadastrado no curso "{curso.nome}". Tente novamente!')
-                else:
-                    # Cria um objeto da classe Curso
-                    novo_aluno = Aluno(matricula, nome, curso)
+                # Tudo certo, cadastra
+                novo_aluno = Aluno(matricula, nome, nome_curso)
+                alunos.append(novo_aluno)
+                print("Aluno cadastrado com sucesso!")
 
-                    # Adiciona o objeto à lista
-                    alunos.append(novo_aluno) 
-                    print(f"Aluno cadastrado!")
-            
-        # Confirmação de continuidade ou não  
         if not deseja_continuar():
             break
 
-    if alunos: # Se houver alunos na lista, exibirá isso:
+    # Mostra a lista no final
+    if alunos:
         print('-'*50)
         print('ALUNOS CADASTRADOS'.center(50))
         print('-'*50)
-        print(''' ''')
-        for indice, aluno in enumerate(alunos): # Acessa atributos do objeto
-            print(f"{indice}.Matrícula: {aluno.matricula} | Nome: {aluno.nome} | Curso: {aluno.curso}") # Acessar atributos do objeto
-        print(''' ''')
-    else: # Se não houver alunos, exibirá isso:
-        print('/'*50)
-        print('ATENÇÃO!!!'.center(50))
-        print('/'*50)
-        print('ALUNO NÃO CADASTRADO. VERIFIQUE SE HÁ O CURSO NO SISTEMA"')
-        print(''' ''')
-
-def deseja_continuar():
-    while True:
-        r = input("Deseja cadastrar outro aluno? [S/N]: ").strip().upper()[0]
-        if r in ['S', 'N']: # Aceita apenas essas duas letras
-            return r == 'S'   # True continua, False para. Está dentro da função de cadastro.
+        for i, aluno in enumerate(alunos):
+            print(f"{i + 1}. Matrícula: {aluno.matricula} | Nome: {aluno.nome} | Curso: {aluno.curso}")
+        print('-'*50)
