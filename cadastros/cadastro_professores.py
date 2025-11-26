@@ -8,7 +8,7 @@ def cadastrar_professor(professores, cursos, disciplinas):
         matricula = input("Matrícula: ")
         nome = input("Nome do Professor: ").strip().upper()
         
-        # --- VALIDAÇÃO 1: O Curso existe? ---
+        # Confirmando se o curso existe
         nome_curso = input("Nome do Curso que leciona: ").strip().upper()
         
         curso_encontrado = False
@@ -22,12 +22,12 @@ def cadastrar_professor(professores, cursos, disciplinas):
             # Volta para o início do loop sem cadastrar
             continue 
 
-        # --- VALIDAÇÃO 2: A Disciplina existe? ---
+        # Confirmando se a disciplina existe
         nome_disciplina = input("Nome da Disciplina: ").strip().upper()
         
         disciplina_encontrada = False
         for d in disciplinas:
-            if d.nome == nome_disciplina: # Ou d.codigo, depende de como quer buscar
+            if d.nome == nome_disciplina: 
                 disciplina_encontrada = True
                 break
         
@@ -35,7 +35,7 @@ def cadastrar_professor(professores, cursos, disciplinas):
             print(f"ERRO: A disciplina '{nome_disciplina}' não existe! Cadastre-a primeiro.")
             continue
 
-        # Se passou pelas duas barreiras, cadastra!
+        # Se ok, cadastra!
         novo_prof = Professor(matricula, nome, nome_disciplina, nome_curso)
         professores.append(novo_prof)
         print("Professor cadastrado com sucesso!")

@@ -1,8 +1,8 @@
 # Criando um classe que encapsula as informações básicas de um curso
 class Curso:
-    def __init__(self, codigo, nome): # Inicializa um novo objeto curso
-        self.codigo = codigo # Armazena o código no atributo do objeto
-        self.nome = nome # Armazena o nome no atributo do objeto
+    def __init__(self, codigo, nome): # Novo objeto curso
+        self.codigo = codigo # Armazena o código
+        self.nome = nome # Armazena o nome 
     
-    def __str__(self): # Tornar legível para o usuário
+    def __str__(self): # Mostra o texto
         return (f'Curso {self.codigo} | {self.nome}')
