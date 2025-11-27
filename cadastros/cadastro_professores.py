@@ -1,4 +1,3 @@
-# def cadastrar_professores (professores)
 from modelos.professor import Professor
 
 def cadastrar_professor(professores, cursos, disciplinas):
@@ -38,7 +37,25 @@ def cadastrar_professor(professores, cursos, disciplinas):
         # Se ok, cadastra!
         novo_prof = Professor(matricula, nome, nome_disciplina, nome_curso)
         professores.append(novo_prof)
-        print("Professor cadastrado com sucesso!")
+        print(f"Professor(a) '{nome}' cadastrado(a) com sucesso!")
 
-        if input("Continuar? [S/N]: ").upper() != 'S':
-            break
+        if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
+                break
+    
+    # Mostra a lista no final
+    if professores:
+        print('-'*50)
+        print('PROFESSORES CADASTRADOS'.center(50))
+        print('-'*50)
+        for p in professores:
+            print(f"Matrícula: {p.matricula} | Nome: {p.nome}")
+        print('-'*50)
+
+
+# Função para verificar se o usuário deseja continuar
+def deseja_continuar():
+    while True:
+        resp = input("Deseja cadastrar outro(a) professor(a)? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
+        if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
+            return resp == 'S'
+        print("Opção inválida. Digite S ou N.")

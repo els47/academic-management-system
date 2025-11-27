@@ -2,6 +2,7 @@ from cadastros.cadastro_cursos import cadastrar_curso
 from cadastros.cadastro_alunos import cadastrar_alunos
 from cadastros.cadastro_disciplinas import cadastrar_disciplina
 from cadastros.cadastro_professores import cadastrar_professor
+from cadastros.cadastro_notas import cadastrar_notas
 from modelos.aluno import Aluno
 
 def menu_cadastros(dados_sistema): # Utiliza como parâmetro os dados que estão armazenado globalmente
@@ -30,9 +31,14 @@ def menu_cadastros(dados_sistema): # Utiliza como parâmetro os dados que estão
                 dados_sistema['cursos'], 
                 dados_sistema['disciplinas'])
         elif opc == 4:
-            cadastrar_alunos(dados_sistema['alunos'], dados_sistema['cursos'])
+            cadastrar_alunos(
+                dados_sistema['alunos'], 
+                dados_sistema['cursos'])
         elif opc == 5:
-            print("Cadastrar notas - Em desenvolvimento")
+            cadastrar_notas(
+                dados_sistema['notas'],
+                dados_sistema['alunos'],
+                dados_sistema['disciplinas'])
         elif opc == 6:
             break
         else:

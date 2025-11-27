@@ -21,9 +21,25 @@ def cadastrar_disciplina(disciplinas):
             # Cria a disciplina nova e salva na lista
             nova_disciplina = Disciplina(codigo, nome)
             disciplinas.append(nova_disciplina)
-            print(f"Sucesso: Disciplina '{nome}' cadastrada!")
+            print(f"Disciplina '{nome}' cadastrada com sucesso!")
 
-        # Pergunta se quer continuar
-        continuar = input("\nCadastrar outra? [S/N]: ").strip().upper()
-        if continuar != 'S':
+        if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
             break
+    
+    # Mostra a lista no final
+    if disciplinas:
+        print('-'*50)
+        print('DISCIPLINAS CADASTRADAS'.center(50))
+        print('-'*50)
+        for d in disciplinas:
+            print(f"Código: {d.codigo} | Nome: {d.nome}")
+        print('-'*50)
+
+
+# Função para verificar se o usuário deseja continuar
+def deseja_continuar():
+    while True:
+        resp = input("Deseja cadastrar outra disciplina? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
+        if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
+            return resp == 'S'
+        print("Opção inválida. Digite S ou N.")

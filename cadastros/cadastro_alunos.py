@@ -40,23 +40,25 @@ def cadastrar_alunos(alunos, cursos):
                 # Tudo certo, cadastra
                 novo_aluno = Aluno(matricula, nome, nome_curso)
                 alunos.append(novo_aluno)
-                print("Aluno cadastrado com sucesso!")
+                print(f"Aluno(a) '{nome}' cadastrado(a) com sucesso!")
 
-        continuar = input("\nDeseja cadastrar outro aluno? [S/N]: ").strip().upper()
-        if continuar != 'S': # Se digitar qualquer coisa que não seja S, ele para
-            break
+            if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
+                break
 
     # Mostra a lista no final
     if alunos:
         print('-'*50)
         print('ALUNOS CADASTRADOS'.center(50))
         print('-'*50)
-        for i, aluno in enumerate(alunos):
-            print(f"{i + 1}. Matrícula: {aluno.matricula} | Nome: {aluno.nome} | Curso: {aluno.curso}")
+        for a in alunos:
+            print(f"Matrícula: {a.matricula} | Nome: {a.nome} | Curso: {a.curso}")
         print('-'*50)
+
+
+# Função para verificar se o usuário deseja continuar
 def deseja_continuar():
     while True:
-        resp = input("Deseja cadastrar outro aluno? [S/N]: ").strip().upper()
-    if resp in ['S', 'N']:
-        return resp == 'S'
+        resp = input("Deseja cadastrar outro(a) aluno(a)? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
+        if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
+            return resp == 'S'
         print("Opção inválida. Digite S ou N.")
