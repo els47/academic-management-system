@@ -6,7 +6,7 @@ def cadastrar_alunos(alunos, cursos):
         
         # Matrícula
         try:
-            matricula = int(input("Matrícula: "))
+            matricula = input("Matrícula: ")
         except ValueError:
             print("A matrícula precisa ser um número.")
             continue
