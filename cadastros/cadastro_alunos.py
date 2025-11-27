@@ -24,6 +24,13 @@ def cadastrar_alunos(alunos, cursos):
         
         if not curso_existe:
             print(f"Erro: O curso '{nome_curso}' não foi encontrado. Cadastre o curso primeiro.")
+            if deseja_sair(): # Coloquei a função novamente para NÃO retornar ao cadastro de alunos automaticamente e ocasionar um loop infinito
+                break # Volta para o menu de cadastro
+            else:
+                if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
+                    break # Volta para o menu de cadastro
+                else:
+                    continue # Volta ao início do loop/ ao cadastro de alunos automaticamente
         
         else:
             # Passo 2: Se o curso existe, vê se o aluno já ta nele
@@ -35,7 +42,9 @@ def cadastrar_alunos(alunos, cursos):
                     break
 
             if ja_matriculado:
-                print(f"Erro: O aluno {matricula} já está matriculado neste curso.")
+                print(f"Erro: O aluno {nome} já está matriculado neste curso.")
+                if not deseja_continuar(): # Coloquei a função novamente para NÃO retornar ao cadastro de aluno automaticamente e ficar em um loop infinito
+                    break
             else:
                 # Tudo certo, cadastra
                 novo_aluno = Aluno(matricula, nome, nome_curso)
@@ -59,6 +68,14 @@ def cadastrar_alunos(alunos, cursos):
 def deseja_continuar():
     while True:
         resp = input("Deseja cadastrar outro(a) aluno(a)? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
+        if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
+            return resp == 'S'
+        print("Opção inválida. Digite S ou N.")
+
+# Função para verificar se o usuário deseja retornar ao menu de cadastro quando um curso não for encontrado ou um aluno já estiver cadastrado
+def deseja_sair():
+    while True:
+        resp = input("Deseja retornar ao Menu de Cadastro? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
         if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
             return resp == 'S'
         print("Opção inválida. Digite S ou N.")
