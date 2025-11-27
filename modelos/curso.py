@@ -1,4 +1,4 @@
-# Criando um classe que encapsula as informações básicas de um curso
+# Informações de um curso
 class Curso:
     def __init__(self, codigo, nome): # Novo objeto curso
         self.codigo = codigo # Armazena o código

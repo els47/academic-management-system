@@ -27,6 +27,12 @@ def cadastrar_curso(cursos):
         else:
             # Só pede o nome se o código for livre
             nome = input("Nome do Curso: ").strip().upper()
+
+            existe_nome = any(c.nome == nome for c in cursos)
+        
+            if existe_nome:
+                print(f"Erro: Já existe um curso cadastrado com o nome '{nome}'.")
+                continue # Volta para o loop inicial
             
             novo_curso = Curso(codigo, nome)
             cursos.append(novo_curso)
