@@ -67,7 +67,7 @@ def cadastrar_professor(professores, cursos, disciplinas):
 # Função para verificar se o usuário deseja continuar
 def deseja_continuar():
     while True:
-        resp = input("Deseja cadastrar outro(a) professor(a)? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
+        resp = input("\nDeseja cadastrar outro(a) professor(a)? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
         if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
             return resp == 'S'
         print("Opção inválida. Digite S ou N.")
@@ -75,7 +75,7 @@ def deseja_continuar():
 # Função para verificar se o usuário deseja retornar ao menu de cadastro quando uma disciplina ou curso não for encontrado
 def deseja_sair():
     while True:
-        resp = input("Deseja retornar ao Menu de Cadastro? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
+        resp = input("\nDeseja retornar ao Menu de Cadastro? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
         if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
             return resp == 'S'
         print("Opção inválida. Digite S ou N.")

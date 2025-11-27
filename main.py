@@ -19,7 +19,7 @@ def main():
         print('-'*32)
         print('1 - Menu de Cadastros')
         print('2 - Menu de Relatórios')
-        print('3 - Menu de Certificados')
+        print('3 - Menu de Status')
         print('4 - Sair')
         print(''' ''')
         
