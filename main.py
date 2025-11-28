@@ -1,4 +1,5 @@
 from menu.menu_cadastro import menu_cadastros
+from menu.menu_status import menu_status
 
 # from menu.menu_relatorio import menu_relatorios
 # from menu.menu_certificado import menu_certificados

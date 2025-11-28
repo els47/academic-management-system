@@ -78,5 +78,5 @@ def deseja_sair():
     while True:
         resp = input("\nDeseja retornar ao Menu de Cadastro? [S/N]: ").strip().upper() # Retira os espaços e coloca todos em letra maiúscula
         if resp in ['S', 'N']: # Impede que o usuário digite outra letra além de S / N
-            return resp == 'S'
+            return resp == 'S' # Encerra o loop quando a resposta for 'S'
         print("Opção inválida. Digite S ou N.")
