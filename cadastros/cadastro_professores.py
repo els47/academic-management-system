@@ -52,7 +52,7 @@ def cadastrar_professor(professores, cursos, disciplinas):
             print(f"Professor(a) '{nome}' cadastrado(a) com sucesso!")
 
             if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
-                    break
+                break
     
     # Mostra a lista no final
     if professores:

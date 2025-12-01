@@ -15,7 +15,7 @@ def cadastrar_curso(cursos):
                 break
 
         if existe_codigo:
-            print(f"Erro: Já existe um curso com o código '{codigo}'. Cadastre outro.")
+            print(f"=== ERRO: Já existe um curso com o código '[{codigo}]'. Cadastre outro. ===")
             if deseja_sair(): # Coloquei a função novamente para NÃO retornar ao cadastro de cursos automaticamente e ocasionar um loop infinito
                 break 
             else:
@@ -31,7 +31,7 @@ def cadastrar_curso(cursos):
             existe_nome = any(c.nome == nome for c in cursos)
         
             if existe_nome:
-                print(f"Erro: Já existe um curso cadastrado com o nome '{nome}'.")
+                print(f"=== ERRO: Já existe um curso cadastrado com o nome '{nome}'. ===")
                 continue # Volta para o loop inicial
             
             novo_curso = Curso(codigo, nome)
