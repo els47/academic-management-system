@@ -1,7 +1,7 @@
 from menu.menu_cadastro import menu_cadastros
+# from menu.menu_status import menu_status
 
 # from menu.menu_relatorio import menu_relatorios
-# from menu.menu_certificado import menu_certificados
 
 def main():
     # Armazena dados temporariamente
@@ -10,7 +10,7 @@ def main():
         'disciplinas': [],
         'professores': [],
         'alunos': [],
-        'notas': []
+        'notas': [],
     }
     
     while True:
@@ -30,8 +30,8 @@ def main():
             menu_cadastros(dados_sistema)  # Passa os dados 
         #elif opc == 2:
          #   menu_relatorios(dados_sistema)
-         #elif opc == 3:
-         #  menu_certificados() # Qual será o parâmetro global?
+        #elif opc == 3:
+           # menu_status(dados_sistema) # Qual será o parâmetro global?
         elif opc == 4:
             break
         else:

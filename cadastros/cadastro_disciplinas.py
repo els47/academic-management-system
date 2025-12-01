@@ -1,22 +1,20 @@
 from modelos.disciplina import Disciplina
 
-def cadastrar_disciplina(disciplinas):
+def cadastrar_disciplina(cursos, disciplinas):
     while True:
         print("\n--- CADASTRO DE DISCIPLINA ---")
-        
-        # Pede os dados e transforma em Maiúsculo
-        codigo = str(input("Código (ex: COMP1): ")).strip().upper()
-        nome = str(input("Nome da Disciplina: ")).strip().upper()
 
-        # Verifica se já existe esse código na lista
-        ja_existe = False
-        for d in disciplinas:
-            if d.codigo == codigo:
-                ja_existe = True
+        # Verifica se existe o curso cadastrado
+        nome_curso = str(input("Nome do Curso: ")).strip().upper()
+
+        curso_existe = False
+        for c in cursos:
+            if c.nome == nome_curso:
+                curso_existe = True
                 break
         
-        if ja_existe:
-            print(f"ERRO: O código '{codigo}' já está cadastrado!")
+        if not curso_existe:
+            print(f"=== ERRO: Curso '{nome_curso}' não encontrado. Cadastre o curso primeiro! ===")
             if deseja_sair(): # Coloquei a função novamente para NÃO retornar ao cadastro de disciplinas automaticamente e ocasionar um loop infinito
                 break 
             else:
@@ -24,15 +22,56 @@ def cadastrar_disciplina(disciplinas):
                     break # Volta para o Menu de Cadastro
                 else:
                     continue # Volta para o loop inicial/cadastro de disciplinas automaticamente
-
         else:
-            # Cria a disciplina nova e salva na lista
-            nova_disciplina = Disciplina(codigo, nome)
-            disciplinas.append(nova_disciplina)
-            print(f"Disciplina '{nome}' cadastrada com sucesso!")
+            # Pede os dados e adiciona um entrada inicial para evitar coincidência com os nomes dos cursos
+            codigo = str(input("Código da Disciplina: COMP")).strip().upper()
 
-            if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
-                break
+            # Verifica se já existe esse código na lista
+            ja_existe = False
+            for d in disciplinas:
+                if d.codigo == codigo:
+                    ja_existe = True
+                    break
+
+            if ja_existe:
+                print(f"=== ERRO: O código '[COMP{codigo}]' já está cadastrado! ===")
+                if deseja_sair(): # Coloquei a função novamente para NÃO retornar ao cadastro de disciplinas automaticamente e ocasionar um loop infinito
+                    break 
+                else:
+                    if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
+                        break # Volta para o Menu de Cadastro
+                    else:
+                        continue # Volta para o loop inicial/cadastro de disciplinas automaticamente
+
+            else:
+
+                # Verificar se já existe disciplina com outro nome
+                nome = str(input("Nome da Disciplina: ")).strip().upper()
+
+                # Verifica se já existe esse nome na lista
+                nome_existe = False
+                for d in disciplinas:
+                    if d.nome == nome:
+                        nome_existe = True
+                        break
+
+                if nome_existe:
+                    print(f"=== ERRO: O código '{nome}' já está cadastrado! ===")
+                    if deseja_sair(): # Coloquei a função novamente para NÃO retornar ao cadastro de disciplinas automaticamente e ocasionar um loop infinito
+                        break 
+                    else:
+                        if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
+                            break # Volta para o Menu de Cadastro
+                        else:
+                            continue # Volta para o loop inicial/cadastro de disciplinas automaticamente
+                else:
+                    # Cria a disciplina nova e salva na lista
+                    nova_disciplina = Disciplina(nome_curso, codigo, nome)
+                    disciplinas.append(nova_disciplina)
+                    print(f"Disciplina '{nome}' cadastrada com sucesso!")
+
+                    if not deseja_continuar(): # Coloquei a função novamente porque é ideal que o usuário digite S / N
+                        break
     
     # Mostra a lista no final
     if disciplinas:
@@ -40,7 +79,7 @@ def cadastrar_disciplina(disciplinas):
         print('DISCIPLINAS CADASTRADAS'.center(50))
         print('-'*50)
         for d in disciplinas:
-            print(f"Código: [{d.codigo}] | Nome: {d.nome}")
+            print(f"Curso: {d.curso} | Código da Disciplina: [COMP{d.codigo}] | Nome: {d.nome}")
         print('-'*50)
 
 

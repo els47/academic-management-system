@@ -24,7 +24,9 @@ def menu_cadastros(dados_sistema): # Utiliza como parâmetro os dados que estão
         if opc == 1:
             cadastrar_curso(dados_sistema['cursos'])
         elif opc == 2:
-            cadastrar_disciplina(dados_sistema['disciplinas'])
+            cadastrar_disciplina(
+                dados_sistema['cursos'],
+                dados_sistema['disciplinas'])
         elif opc == 3:
             cadastrar_professor(
                 dados_sistema['professores'], 
@@ -36,9 +38,10 @@ def menu_cadastros(dados_sistema): # Utiliza como parâmetro os dados que estão
                 dados_sistema['cursos'])
         elif opc == 5:
             cadastrar_notas(
-                dados_sistema['notas'],
                 dados_sistema['alunos'],
-                dados_sistema['disciplinas'])
+                dados_sistema['cursos'],
+                dados_sistema['disciplinas'],
+                dados_sistema['notas'])
         elif opc == 6:
             break
         else:

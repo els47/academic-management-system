@@ -31,7 +31,7 @@ def cadastrar_alunos(alunos, cursos):
             nome_tem_outra_matricula = False
             for a in alunos:
                 if a.nome == nome:
-                    print(f"Erro: O aluno '{nome}' já possui cadastro com a matrícula {a.matricula}.")
+                    print(f"=== Erro: O aluno '{nome}' já possui cadastro com a matrícula {a.matricula}. ===")
                     nome_tem_outra_matricula = True
                     break
             
@@ -53,7 +53,7 @@ def cadastrar_alunos(alunos, cursos):
                 break 
         
         if not curso_existe:
-            print(f"Erro: O curso '{nome_curso}' não foi encontrado. Cadastre o curso primeiro.")
+            print(f"=== Erro: O curso '{nome_curso}' não foi encontrado. Cadastre o curso primeiro. ===")
         
         else:
             # Validação dupla
@@ -65,7 +65,7 @@ def cadastrar_alunos(alunos, cursos):
                     break
 
             if ja_matriculado:
-                print(f"Erro: O aluno '{nome}' já está matriculado no curso de {nome_curso}.")
+                print(f"=== Erro: O aluno '{nome}' já está matriculado no curso de {nome_curso}. ===")
             else:
                 novo_aluno = Aluno(matricula, nome, nome_curso)
                 alunos.append(novo_aluno)
