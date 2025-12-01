@@ -103,7 +103,7 @@ def cadastrar_notas(notas, alunos, disciplinas):
                         print("="*30)
 
                     # Salva a média final
-                    nova_nota = Nota(aluno_encontrado.nome, codigo_disciplina, f"{media:.1f}")                                              
+                    nova_nota = Nota(aluno_encontrado.nome, codigo_disciplina, f"{media:.1f}")                    
                     notas.append(nova_nota)
                     print(f"Média final '{media:.1f}' cadastrada com sucesso!")
 
