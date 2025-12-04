@@ -56,7 +56,7 @@ def cadastrar_disciplina(cursos, disciplinas):
                         break
 
                 if nome_existe:
-                    print(f"=== ERRO: O código '{nome}' já está cadastrado! ===")
+                    print(f"=== ERRO: O nome '{nome}' já está cadastrado! ===")
                     if deseja_sair(): # Coloquei a função novamente para NÃO retornar ao cadastro de disciplinas automaticamente e ocasionar um loop infinito
                         break 
                     else:

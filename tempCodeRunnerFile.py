@@ -1,2 +1,1 @@
-
-    while True:
+Status do Aluno (Notas & CR)

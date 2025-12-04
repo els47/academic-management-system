@@ -104,18 +104,34 @@ def cadastrar_notas(alunos, cursos, disciplinas, notas):
                                 break # Volta para o Menu de Cadastro
                             else:
                                 continue # Volta para o loop inicial/cadastro de disciplinas automaticamente
+                    else:
+                        # Pedir nota geral
+                        nota_existe = False
+                        for d in notas:
+                            if d.disciplina == disciplina and d.aluno == nome_input:
+                                nota_existe = True
+                                break
 
+                        if nota_existe:
+                            print(f"=== ERRO: Aluno '{nome_input}' já possui nota na disciplina '{disciplina}' ===")
+                            if deseja_sair(): 
+                                break 
+                            else:
+                                if not deseja_continuar(): 
+                                    break 
+                                else:
+                                    continue 
 
-                # Pedir nota geral
-                nota = float(input("Nota Geral: "))
-                        
-                # Armazenando notas na classe Nota
-                nova_nota= Nota(nome_input, curso, disciplina, nota)
-                notas.append(nova_nota)
-                print(f"A Nota '{nota}' Geral foi cadastrada com sucesso!")
-
-                if not deseja_continuar(): 
-                    break
+                        if not nota_existe:
+                            nota = float(input("Nota Geral: "))
+                                    
+                            # Armazenando notas na classe Nota
+                            nova_nota= Nota(nome_input, curso, disciplina, nota)
+                            notas.append(nova_nota)
+                            print(f"A Nota '{nota}' Geral foi cadastrada com sucesso!")
+                            
+                            if not deseja_continuar(): 
+                                break
 
     # Lista das notas
     if notas:
@@ -125,98 +141,6 @@ def cadastrar_notas(alunos, cursos, disciplinas, notas):
         for n in notas:
             print(f"Aluno: {n.aluno} | Disciplina: {n.disciplina} | Nota Geral {n.nota}")
         print('-'*50)
-
-    '''
-            codigo_disciplina = str(input("Código da Disciplina: ")).strip().upper()
-
-            disciplina_existe = False
-            for d in disciplinas:
-                if d.codigo == codigo_disciplina:
-                    disciplina_existe = True
-                    break
-            
-            if not disciplina_existe:
-                print(f"ERRO: A disciplina '{codigo_disciplina}' não existe! Cadastre-a primeiro.")
-                if deseja_sair(): 
-                    break 
-                else:
-                    if not deseja_continuar(): 
-                        break 
-                    else:
-                        continue     
-            else:
-                try:
-                    # Pedir nota AV1 e AV2
-                    av1 = float(input("Nota AV1: "))
-                    av2 = float(input("Nota AV2: "))
-                    
-                    # Calcula média
-                    media = (av1 + av2) / 2
-                    status = "Reprovado" 
-                    nota_final = 0.0
-
-                    # Implementar verificação de Status
-                    if media >= 7.0:
-                        status = "Aprovado"
-                    else:
-                        # Se < 7.0, prova Final
-                        print(f"Média ({media:.1f}) abaixo de 7.0. Necessário Prova Final.")
-                        nota_final = float(input("Nota da Prova Final: "))
-
-                        # Substituir a nota mais baixa pela nota final
-                        if av1 < av2:
-                            av1 = nota_final # Substitui AV1 se for a menor
-                        else:
-                            av2 = nota_final # Substitui AV2 se for a menor
-                        
-                        # Recalcula a média
-                        media = (av1 + av2) / 2
-                        
-                        # Final
-                        if media >= 5.0:
-                            status = "Aprovado na Final"
-                        else:
-                            status = "Reprovado"
-
-                    # Perguntar sobre Certificado (só se aprovado)
-                    msg_certificado = "Não emitido"
-                    if "Aprovado" in status:
-                        print(f"Aluno {status}! Média Final: {media:.1f}")
-                        if input("Deseja emitir certificado de conclusão? [S/N]: ").upper() == 'S':
-                            msg_certificado = "Emitido"
-                            print("Certificado gerado com sucesso!")
-                    
-                    # Perguntar sobre Boletim (sempre)
-                    if input("Deseja emitir o boletim? [S/N]: ").upper() == 'S':
-                        print("\n" + "="*30)
-                        print("       BOLETIM ESCOLAR")
-                        print("="*30)
-                        print(f"Aluno: {aluno_encontrado.nome}")                       
-                        print(f"Disciplina: {codigo_disciplina}")
-                        print(f"Média Final: {media:.1f}")
-                        print(f"Situação: {status}")
-                        print("="*30)
-
-                    # Salva a média final
-                    nova_nota = Nota(aluno_encontrado.nome, codigo_disciplina, f"{media:.1f}")                    
-                    notas.append(nova_nota)
-                    print(f"Média final '{media:.1f}' cadastrada com sucesso!")
-
-                except ValueError:
-                    print("Erro: Digite apenas números para as notas!")
-
-            if not deseja_continuar(): 
-                break
-
-    # Lista das notas
-    if notas:
-        print('-'*50)
-        print('NOTAS CADASTRADAS'.center(50))
-        print('-'*50)
-        for n in notas:
-            print(f"Aluno: {n.aluno} | Disciplina:[{n.disciplina}] | Média: {n.nota}")
-        print('-'*50)
-'''
 
 def deseja_continuar():
     while True:
